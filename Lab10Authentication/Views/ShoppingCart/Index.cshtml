@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Lab10Authentication.Models.Entities.CartItem>
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+    decimal grandTotal = 0;
+    int numItems = 0;
+}
+
+<h2>Shopping Cart</h2>
+<a asp-controller="ShoppingCart" asp-action="Empty" class="btn btn-danger">Empty Cart (No Purchase)</a> |
+<a asp-controller="ShoppingCart" asp-action="Checkout" class="btn btn-primary">Checkout</a> |
+<a asp-controller="Home" asp-action="Index" class="btn btn-success">Main Shopping</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                Quantity
+            </th>
+            <th>
+                Total Price for Item
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @item.Price.ToString("C")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @((item.Price * item.Quantity).ToString("C"))
+                </td>
+                <td>
+                    <a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-warning">Remove Item</a>
+                </td>
+            </tr>
+            grandTotal += item.Price * item.Quantity;
+            numItems += item.Quantity;
+        }
+    </tbody>
+</table>
+<h4>Number of Items: @numItems</h4>
+<h3>Grand Total: @grandTotal.ToString("C")</h3>

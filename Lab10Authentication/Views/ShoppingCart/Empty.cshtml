@@ -1,0 +1,16 @@
+﻿@model Lab10Authentication.Models.Entities.CartItem
+
+@{
+    ViewData["Title"] = "Empty Cart";
+    Html.AntiForgeryToken();
+}
+
+<h2>Empty Cart</h2>
+
+<h3>Are you sure you want to empty your shopping cart?</h3>
+<div>  
+    <form asp-action="Empty">
+        <input type="submit" value="Empty Cart" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-success">Back to Shopping Cart</a>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+﻿@model Lab10Authentication.Models.Entities.Item
+
+@{
+    ViewData["Title"] = "Delete";
+    Html.AntiForgeryToken();
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd>
+            @Model.Price.ToString("C")
+        </dd>
+        <dt>
+            Amount In Stock
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountInStock)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-primary">Back to List</a>
+    </form>
+</div>

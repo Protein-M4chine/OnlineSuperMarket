@@ -1,0 +1,3 @@
+﻿- Make Emails Unique
+- Make Items Unique
+- Only Allow User to Buy Quantity Less than Amount In Stock

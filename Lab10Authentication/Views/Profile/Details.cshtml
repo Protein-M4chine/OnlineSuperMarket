@@ -1,0 +1,43 @@
+﻿@model Lab10Authentication.Models.Entities.Profile
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Full Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName), @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Street)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Zip)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Zip)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-email="@Model.Email" class="btn btn-warning"> Edit Profile</a> |
+    <a asp-action="Delete" asp-route-email="@Model.Email" class="btn btn-danger"> Delete Profile</a> |
+    <a asp-controller="Home" asp-action="Index" class="btn btn-success">Back to Main Shopping</a>
+</div>

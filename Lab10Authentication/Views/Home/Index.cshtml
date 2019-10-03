@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Lab10Authentication.Models.Entities.Item>
+
+@{
+    ViewData["Title"] = "Home";
+    var itemQuery = Model.GroupBy(i => i.Type);
+}
+
+<h1>Main Shopping</h1>
+<p>
+    <br />
+    <a asp-controller="ShoppingCart" asp-action="Index" asp-route-id="" class="btn btn-sm btn-success">View Shopping Cart</a>
+    <br /><br />
+    <h4>Number of Items: @ViewBag.numItems</h4>
+    <h3>Grand Total: @ViewBag.grandTotal.ToString("C")</h3>
+    <br />
+</p>
+
+@foreach (var itemGroup in itemQuery)
+{
+    int counter = 0;
+    <h2>@itemGroup.ElementAtOrDefault(counter).Type.ToString() Aisle</h2>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th width="1000">
+                    Name
+                </th>
+                <th width="1000">
+                    Price
+                </th>
+                <th width="1000">
+                    Amount In Stock
+                </th>
+            </tr>
+            @foreach (var item in itemGroup)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>@item.AmountInStock</td>
+                    @if (item.AmountInStock > 0)
+                    {
+                        <td><a asp-controller="ShoppingCart" asp-action="Buy" asp-route-id="@item.Id" class="btn btn-sm btn-info">Buy</a></td>
+                    }
+                    else
+                    {
+                        <td><a asp-controller="ShoppingCart" asp-action="Buy" asp-route-id="@item.Id" class="btn btn-sm btn-info disabled">Buy</a></td>
+                    }
+                </tr>
+                counter++;
+            }
+        </tbody>
+    </table>
+}
+
+<h4>Number of Items: @ViewBag.numItems</h4>
+<h3>Grand Total: @ViewBag.grandTotal.ToString("C")</h3>
